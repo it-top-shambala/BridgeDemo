@@ -1,0 +1,39 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+interface ITypeTransportation {
++ {abstract} Loading() : void
++ {abstract} Unloading() : void
+}
+
+ITypeTransportation <|.. PassengerTransportation
+class PassengerTransportation {
++ Loading() : void
++ Unloading() : void
+}
+
+ITypeTransportation <|.. CargoTransportation
+class CargoTransportation {
++ Loading() : void
++ Unloading() : void
+}
+
+ITypeTransportation *-- ATransport
+abstract class ATransport {
++ typeTransportation : ITypeTransportation
++ {abstract} Move() : void
+}
+
+ATransport <|-- MotorT
+abstract class MotorT {
++ MotorT(typeTransportation : ITypeTransportation)
++ Move() : void
+}
+
+ATransport <|-- AirT
+abstract class AirT {
++ AirT(typeTransportation : ITypeTransportation)
++ Move() : void
+}
+
+@enduml
